@@ -9,7 +9,6 @@ Depends: R(>= 2.3)
 Imports: survival
 License: GPL
 Maintainer: David Winsemius <dwinsemius@comcast.net>
-Packaged: 2021-04-21 07:38:10 UTC; hornik
-Repository: CRAN
-Date/Publication: 2021-04-21 10:43:31 UTC
+URL: https://github.com/dwinsemius/muhaz
+BugReports: https://github.com/dwinsemius/muhaz/issues
 NeedsCompilation: yes
