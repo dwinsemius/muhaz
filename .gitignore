@@ -1,0 +1,6 @@
+# R build artefacts
+*.o
+*.so
+*.dll
+*.Rproj.user
+.DS_Store
