@@ -26,6 +26,12 @@ muhaz <- function(times, delta, subset, min.time, max.time, bw.grid, bw.pilot,
 
     nobs <- length(times)
 
+    if (nobs > 20000) {
+        stop("\nmuhaz() supports at most 20000 observations after ",
+             "subsetting; received ", nobs, ". This limit comes from ",
+             "fixed-size arrays in the underlying Fortran code.\n")
+    }
+
     if ( missing(delta) ) {
            delta <- rep(1, nobs)
        } else {
@@ -55,6 +61,12 @@ muhaz <- function(times, delta, subset, min.time, max.time, bw.grid, bw.pilot,
     delta <- delta[ix]
 
     nobs <- length(times)
+
+    if (nobs > 20000) {
+        stop("\nmuhaz() supports at most 20000 observations after ",
+             "subsetting; received ", nobs, ". This limit comes from ",
+             "fixed-size arrays in the underlying Fortran code.\n")
+    }
 
     if ( missing(min.time) ) {
         startz <- 0
