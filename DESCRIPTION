@@ -1,9 +1,21 @@
 Package: muhaz
 Description: Produces a smooth estimate of the hazard
   function for censored data.
-Version: 1.2.6.4
-Author: S original by Kenneth Hess,  
-        R port by R. Gentleman
+Version: 1.2.6.5
+Authors@R: c(person(given = c("S", "original", "by", "Kenneth"),
+                        family = "Hess",
+                        role = "aut"),
+                 person(given = c("R", "port", "by", "R."),
+                        family = "Gentleman",
+                        role = c("aut")),
+                 person(given = "David",
+                        family = "Winsemius",
+                        role = c("cre", "ctb"),
+                        email = "dwinsemius@comcast.net"),
+                 person(given = "Ken",
+                        family = "Beath",
+                        role = "ctb",
+                        email = "ken@kjbeath.id.au"))
 Title: Hazard Function Estimation in Survival Analysis
 Depends: R(>= 2.3)
 Imports: survival

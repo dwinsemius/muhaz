@@ -82,7 +82,7 @@ muhaz <- function(times, delta, subset, min.time, max.time, bw.grid, bw.pilot,
     if (startz > endz)
         stop("\nmin.time MUST be < max.time\n")
     # use default values as proposed by Mueller (bw.pilot and bw.smooth)
-    nz <- sum(delta)
+    nz <- max(1,sum(delta)) # guarantee at least one event
     if ( missing(bw.pilot) ) {
         bw.pilot <- endz/8/(nz^.2)
     }

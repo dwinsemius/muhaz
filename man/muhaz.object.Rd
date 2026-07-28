@@ -14,7 +14,8 @@ Objects of this class have methods for the functions \code{summary},
 \section{STRUCTURE}{
 Common components of a \code{muhaz} object:
 }
-\arguments{
+\value{
+\describe{
 \item{pin.common}{
 list containing the input parameters.  Its components are:
 * times - the survival times vector
@@ -78,7 +79,9 @@ For bw.method="knn" only.
 }
 \item{k.opt}{
 optimum number of nearest neighbors.  For bw.method="knn" only.
-}}
+}
+}
+}
 \seealso{
 \code{\link{muhaz}}, \code{\link{plot.muhaz}}, \code{\link{summary.muhaz}}.
 }
