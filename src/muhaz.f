@@ -135,6 +135,11 @@ C           2nd column: survival function values for the corresp. time
 C     n --> number of unique survival times
 C     x0 --> survival time for which the survival value is desired
 
+C     WARNING: fixed-size array. Caller must ensure the number of
+C     distinct survival times does not exceed 20000. This is
+C     enforced at the R level (see nobs check in muhaz()); direct
+C     Fortran callers get no such protection and will silently
+C     corrupt memory if this limit is exceeded.
       INTEGER n
       DOUBLE PRECISION x(20000,2), x0
 
@@ -377,6 +382,9 @@ C     ihi <-- index of the last "active" observation point
 
 C Computes Kaplan-Meier estimates
 
+C     WARNING: fixed-size array, sized for at most 20000 distinct
+C     survival times. Not bounds-checked here; the R-level wrapper
+C     (muhaz()) enforces nobs <= 20000 before calling into Fortran.
       INTEGER n, delta(n), count
       DOUBLE PRECISION times(n), x(20000,2)
 
@@ -512,6 +520,11 @@ c     (uncensored observations, i.e. status=1)
       INTEGER n, status(n), nz, k
       DOUBLE PRECISION times(n), z(nz), bw(nz)
 
+C     WARNING: tcopy is sized for at most 20000 observations;
+C     td is sized for at most 20000 but only needs
+C     min(2*k+1, n) in practice. Neither is bounds-checked here.
+C     The R-level wrapper enforces nobs <= 20000 before this is
+C     ever reached.
       INTEGER i, j, iv, ilo, ihi, ipos, count, atpos
       DOUBLE PRECISION z0, tcopy(20000), td(20000)
       EXTERNAL atpos, sorter
@@ -1120,6 +1133,10 @@ C     nobs --> number of observations (censored and uncensored)
 C     k --> number of neighbors within the bandwidth
       INTEGER k
 
+C     WARNING: dx is sized for at most 200000 but the actual
+C     requirement is min(2*k+1, n). Not bounds-checked here.
+C     Reachable via bw.method="knn" in muhaz(), which is
+C     protected by the R-level nobs <= 20000 guard.
       INTEGER i, ix0, ilo, ihi, count, atpos
       DOUBLE PRECISION dx(200000), const, bw, bw0, r, r0, gets, ds       
       DOUBLE PRECISION EPSI, ONE, ONEMOR, ONELES
