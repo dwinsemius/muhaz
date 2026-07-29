@@ -55,8 +55,15 @@ muhaz <- function(times, delta, subset, min.time, max.time, bw.grid, bw.pilot,
     times <- times[subset]
     delta <- delta[subset]
 
-      # sort data, on times
-    ix <- order(times)
+      # sort data, on times; break ties by placing events (delta=1)
+      # before censored observations (delta=0) at identical times,
+      # matching the convention used by survival::Surv/Kaplan-Meier
+      # (a censored subject is still at risk when an event occurs
+      # at the same recorded time). Without this secondary key,
+      # order() is a stable sort and ties are broken by accidental
+      # input row order, causing the hazard estimate at tied times
+      # to depend on which observation happened to appear first.
+    ix <- order(times, -delta)
     times <- times[ix]
     delta <- delta[ix]
 
