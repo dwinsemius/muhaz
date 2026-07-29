@@ -1,7 +1,7 @@
 Package: muhaz
 Description: Produces a smooth estimate of the hazard
   function for censored data.
-Version: 1.2.6.5
+Version: 1.2.6.6
 Authors@R: c(person(given = c("S", "original", "by", "Kenneth"),
                         family = "Hess",
                         role = "aut"),
